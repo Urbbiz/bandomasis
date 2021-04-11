@@ -16,7 +16,7 @@
                                     <option value="0" disabled @if($filterBy==0) selected @endif>Select menu</option>
                                     @foreach ($menus as $menu)
                                     <option value="{{$menu->id}}" @if($filterBy==$menu->id) selected @endif>
-                                        {{$menu->title}} 
+                                        {{$menu->title}}( {{$menu->price}}Eur.) 
                                     </option>
                                     @endforeach
                                 </select>

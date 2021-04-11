@@ -75,7 +75,7 @@ class RestaurantController extends Controller
 
         // $menus = Menu::all();
         $menus = Menu::orderBy('title')->get();
-        return view('restaurant.create', ['menus' => $menus]);
+        return view('restaurant.create', ['menus' => $menus->sortBy('title')]);
 
         
     }
@@ -141,8 +141,9 @@ class RestaurantController extends Controller
      */
     public function edit(Restaurant $restaurant)
     {
+        
         $menus = Menu::orderBy('title')->get();
-        return view('restaurant.edit', ['restaurant' => $restaurant, 'menus' => $menus ]);
+        return view('restaurant.edit', ['restaurant' => $restaurant, 'menus' => $menus->sortBy('title') ]);
     }
 
     /**
@@ -158,7 +159,7 @@ class RestaurantController extends Controller
         $validator = Validator::make(
             $request->all(),
              [
-           'restaurant_title' => ['required', 'min:3', 'max:64'],
+           'restaurant_title' => ['required', 'min:3', 'max:200'],
            'restaurant_customers' => ['required','numeric'],
            'restaurant_employees' => ['required','numeric'],
            'menu_id' => ['required',],
