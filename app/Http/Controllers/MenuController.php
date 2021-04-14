@@ -166,7 +166,7 @@ class MenuController extends Controller
     {
 
         if($menu->restaurantMenu->count()){
-            return 'Trinti negalima, nes turi knygų';
+            return redirect()->back()->with('info_message', 'Cannot delet menu, because it linked to restaurant');
         }
         $menu->delete();
        return redirect()->route('menu.index')->with('success_message', 'Sėkmingai ištrintas.');
